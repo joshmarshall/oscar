@@ -3,13 +3,22 @@
     <ul class="chart">
         {% for column in columns %}
         <li class="chart-column chart-points-{{ column[0].get('points', 0) }}">
+            <p class="point-title">{{ column[0].get('points', 0) }} Point(s)</p>
             <ul class="chart-column-list">
-            {% for category in column %}
-            <li class="chart-category">
-                <p class="category-title">{{ category['title'] }}</p>
-                <p class="category-points">{{ category.get('points', 0) }}</p>
-            </li>
-            {% end for %}
+                {% for category in column %}
+                <li class="chart-category {% if category.get('winner') %}winner{% elif category.get('locked') %}locked{% end if %}">
+                    <p class="category-title">{{ category['title'] }}</p>
+                    <p class="category-detail">
+                        {% if category.get('winner') %}
+                        <img src="{{ nominees_by_id[category['winner']]['image'] }}"/>
+                        {% else %}
+                        <span class="undecided">
+                        (undecided)
+                        </span>
+                        {% end if %}
+                    </p>
+                </li>
+                {% end for %}
             </ul>
             {% if len(column) == 1 %}
             <!-- middle column -->
@@ -17,7 +26,7 @@
                 {% for user_id, score, correct in scores[:5] %}
                 <li>
                     <p class="rank-username">
-                        {{ users_by_id[user_id]['username'] }}
+                        {{ users_by_id[user_id]['name'] }}
                     </p>
                     <p class="rank-score">
                         <b>{{ score }} POINTS</b><br/>({{ correct }} / {{ total }})

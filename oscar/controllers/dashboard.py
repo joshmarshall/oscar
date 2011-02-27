@@ -13,9 +13,15 @@ class IndexHandler(Handler):
         categories = list(self.db.categories.find().sort('points', -1))
         users = list(self.db.users.find({"admin": False}))
         users_by_id = dict([(user['_id'], user) for user in users])
+        nominees = list(self.db.nominees.find())
         predictions = self.db.predictions.find({"user_id":
             { "$in": [user['_id'] for user in users] }
         })
+        
+        nominees_by_id = dict([
+            (nominee['_id'], nominee) 
+            for nominee in nominees
+        ])
         
         scores = []
         
@@ -59,11 +65,8 @@ class IndexHandler(Handler):
         keys.sort(reverse=True)
         columns = []
         
-        print keys
-        
         i = 0
         for key in keys:
-            print "FILLING %d" % key
             point_cats = points[key]
             split_index = int(math.ceil(len(point_cats) / 2.0))
             left = point_cats[:split_index]
@@ -78,6 +81,7 @@ class IndexHandler(Handler):
             scores=scores,
             users_by_id=users_by_id,
             columns=columns,
+            nominees_by_id=nominees_by_id,
             total=len(categories)
         )
         

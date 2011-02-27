@@ -171,35 +171,18 @@ ul.chart li.chart-column {
     float: left;
 }
 
-    ul.chart li.chart-column.chart-points-10 {
-        padding-top: 110px;
-        width: 160px;
+    ul.chart li.chart-column p.point-title {
+        display: block;
+        background: #AAA;
+        color: #000;
+        text-align: center;
+        padding: 4px 0;
+        border-radius: 5px 5px 0 0 / 5px 5px 0 0;
+        -moz-border-radius: 5px 5px 0 0 /5px 5px 0 0;
+        text-transform: uppercase;
+        font-size: 10px;
+        margin-bottom: 0;
     }
-    
-        li.chart-column.chart-points-10 ul.chart-column-list p.category-points {
-            font-size: 52px;
-            line-height: 64px;
-        }
-    
-    ul.chart li.chart-column.chart-points-5 {
-        padding-top: 70px;
-        width: 130px;
-    }
-        
-        li.chart-column.chart-points-5 ul.chart-column-list p.category-points {
-            font-size: 42px;
-            line-height: 54px;
-        }
-        
-    ul.chart li.chart-column.chart-points-3 {
-        padding-top: 30px;
-        width: 120px;
-    }
-        li.chart-column.chart-points-3 ul.chart-column-list p.category-points {
-            font-size: 36px;
-            line-height: 42px;
-            line-height: 
-        }
 
     ul.chart li.chart-column ul.chart-column-list {
         margin: 0;
@@ -210,11 +193,25 @@ ul.chart li.chart-column {
     
     ul.chart-column-list li {
         background: #555;
-        padding: 6px 6px 12px;
+        padding: 6px 6px 10px;
         border-radius: 5px;
         -moz-border-radius: 5px;
         margin-bottom: 10px;
     }
+    
+        ul.chart-column-list li:first-child {
+            padding-top: 10px;
+            border-radius: 0 0 5px 5px / 0 0 5px 5px;
+            -moz-border-radius: 0 0 5px 5px / 0 0 5px 5px;
+        }
+        
+        ul.chart-column-list li.locked {
+            background-color: #700;
+        }
+        
+        ul.chart-column-list li.winner {
+            background-color: #170;
+        }
     
         ul.chart-column-list p.category-title {
             font-size: 10px;
@@ -225,12 +222,66 @@ ul.chart li.chart-column {
             display: block;
         }
         
-        ul.chart-column-list p.category-points {
+        ul.chart-column-list p.category-detail {
             margin: 5px 0;
             padding: 0;
-            font-size: 30px;
+            font-size: 12px;
             text-align: center;
             line-height: 36px;
+        }
+        
+        li.chart-column ul.chart-column-list p.category-detail img {
+            height: 45px;
+            padding: 1px;
+            background: #000;
+            border: 1px solid #CCC;
+        }
+    
+    ul.chart li.chart-column.chart-points-10 {
+        padding-top: 110px;
+        width: 160px;
+    }
+        
+        li.chart-column.chart-points-10 ul.chart-column-list p.category-detail img {
+            height: 83px;
+        }
+    
+        li.chart-column.chart-points-10 ul.chart-column-list p.category-detail {
+            /*font-size: 52px;*/
+            line-height: 64px;
+        }
+    
+        li.chart-column ul.chart-column-list p.category-detail span.undecided {
+            color: #888;
+            font-size: 10px;
+        }
+    
+    ul.chart li.chart-column.chart-points-5 {
+        padding-top: 70px;
+        width: 130px;
+    }
+        
+        li.chart-column.chart-points-5 ul.chart-column-list p.category-detail img {
+            height: 63px;
+        }
+        
+        li.chart-column.chart-points-5 ul.chart-column-list p.category-detail {
+            /*font-size: 42px;*/
+            line-height: 54px;
+        }
+        
+    ul.chart li.chart-column.chart-points-3 {
+        padding-top: 30px;
+        width: 120px;
+    }
+        
+        li.chart-column.chart-points-3 ul.chart-column-list p.category-detail img {
+            height: 54px;
+        }
+        
+        li.chart-column.chart-points-3 ul.chart-column-list p.category-detail {
+            /*font-size: 36px;*/
+            line-height: 42px;
         }
 
 .rank-list {
@@ -252,13 +303,13 @@ ul.chart li.chart-column {
 
 .rank-list p.rank-username {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 17px;
     margin-bottom:3px;
 }
 
 .rank-list li:first-child p.rank-username {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
 }
 
