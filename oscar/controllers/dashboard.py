@@ -235,3 +235,58 @@ class PredictionHandler(Handler):
             
         self.db.predictions.save(predictions)
         return self.redirect("/")
+
+class RankingsHandler(Handler):
+    
+    def get(self):
+        
+        categories = list(self.db.categories.find().sort('points', -1))
+        users = list(self.db.users.find({"admin": False}))
+        users_by_id = dict([(user['_id'], user) for user in users])
+        nominees = list(self.db.nominees.find())
+        predictions = self.db.predictions.find({"user_id":
+            { "$in": [user['_id'] for user in users] }
+        })
+        
+        nominees_by_id = dict([
+            (nominee['_id'], nominee) 
+            for nominee in nominees
+        ])
+        
+        scores = []
+        
+        users_used = []
+        
+        for prediction in predictions:
+            
+            score = 0
+            correct = 0
+            for category in categories:
+                winner = category.get('winner')
+                predicted = prediction.get(category['short'], None)
+                if winner and predicted and winner == predicted:
+                    score += category['points']
+                    correct += 1
+                    
+            inserted = False
+            for i in range(0, len(scores)):
+                if score > scores[i][1]:
+                    scores.insert(i, (prediction['user_id'], score, correct))
+                    inserted = True
+                    break
+                    
+            if not inserted:
+                scores.append((prediction['user_id'], score, correct))
+            users_used.append(prediction['user_id'])
+            
+        for user in users:
+            if user['_id'] not in users_used:
+                scores.append((user['_id'], 0, 0))
+           
+        self.render(
+            "rankings.htm", 
+            scores=scores,
+            users_by_id=users_by_id,
+            nominees_by_id=nominees_by_id,
+            total=len(categories)
+        )

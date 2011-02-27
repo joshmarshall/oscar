@@ -398,3 +398,46 @@ ul.nav {
     color: #F44;
     text-align: center;
 }
+
+.ranking-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ranking-list li.ranking-user {
+    background: #555;
+    overflow: auto;
+    color: #CCC;
+    margin-bottom: 10px;
+}
+
+.ranking-list li .ranking-number {
+    float: left;
+    display: block;
+    font-size: 30px;
+    line-height: 60px;
+    margin-right: 10px;
+    width: 70px;
+    text-align: center;
+    border-right: 1px solid #AAA;
+    color: #FFF;
+}
+
+.ranking-list li .ranking-info {
+    float: left;
+    display: block;
+}
+
+    .ranking-list li .ranking-info p {
+        margin: 0;
+        padding: 0;
+        line-height: 16px;
+    }
+    
+    .ranking-list li .ranking-info p.ranking-username {
+        font-size: 18px;
+        line-height: 26px;
+        margin-top: 7px;
+        color: #FFF;
+    }

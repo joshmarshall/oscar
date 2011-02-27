@@ -1,0 +1,19 @@
+{% include "header.htm" %}
+
+<ol class="ranking-list">
+    {% for i in range(0, len(scores)) %}
+    <li class="ranking-user">
+        <div class="ranking-number">{{ i + 1 }}</div>
+        <div class="ranking-info">
+        <p class="ranking-username">
+            {{ users_by_id[scores[i][0]]['name'] }}
+        </p>
+        <p class="ranking-score">
+            <b>{{ scores[i][1] }}</b> POINTS  ({{ scores[i][2] }} of {{ total }} correct)
+        </p>
+        </div>
+    </li>
+    {% end for %}
+</ol>
+    
+{% include "footer.htm" %}

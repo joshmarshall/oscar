@@ -6,6 +6,7 @@ ROUTES = [
     ("/new", dashboard.NewUserHandler),
     ("/predictions", dashboard.PredictionLoginHandler),
     ("/predictions/([a-zA-Z0-9\-_]+)", dashboard.PredictionHandler),
+    ("/rankings", dashboard.RankingsHandler),
     ("/admin", admin.AdminIndexHandler),
     ("/admin/logout", admin.LogoutHandler),
     ("/admin/login", admin.LoginHandler),
