@@ -41,7 +41,6 @@ class IndexHandler(Handler):
             if user['_id'] not in users_used:
                 scores.append((user['_id'], 0))
         
-        print scores
         self.render(
             "rank.htm", 
             scores=scores,
@@ -93,8 +92,6 @@ class PredictionHandler(Handler):
         })
         if not predictions:
             predictions = {}
-            
-        print predictions
             
         self.render(
             "predictions.htm",
