@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>OscarSlam.com</title>
+    <link href="/static/css/style.css" media="screen" rel="stylesheet"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/prediction.js"></script>
+</head>
+<body class="{{ body_class }}">
+
+    {% if show_nav %}
+    <ul class="nav">
+        <li><span>OSCAR<b>SLAM</b></span></li>
+        <li><a href="/">Take Me Home!</a></li>
+        <li><a href="/new">Sign Me Up!</a></li>
+        <li><a href="/rankings">Show Me the Rankings!</a></li>
+        <li><a href="/predictions">Change My Guesses!</a></li>
+    </ul>
+    {% end if %}

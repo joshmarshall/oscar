@@ -1,0 +1,21 @@
+{% include "header.htm" %}
+
+    <div class='user-form'>
+    <h1>Login</h1>
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% end if %}
+    <form action="/predictions" method="POST">
+    <p>
+        <label for="username">Username</label>
+        <input class="text" type="text" name="username" value=""/>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input class="text" type="password" name="password" value=""/>
+    </p>
+    <p><input type="submit" value="Submit"/></p>
+    </form>
+    </div>
+
+{% include "footer.htm" %}

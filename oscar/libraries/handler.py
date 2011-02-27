@@ -27,6 +27,11 @@ class Handler(tornado.web.RequestHandler):
     def error(self, code, message = ""):
         raise tornado.web.HTTPError(code)
     
+    def render(self, *args, **kwargs):
+        kwargs.setdefault('body_class', 'normal')
+        kwargs.setdefault("show_nav", True)
+        return tornado.web.RequestHandler.render(self, *args, **kwargs)
+    
 class AdminHandler(Handler):
     
     def get_current_user(self):

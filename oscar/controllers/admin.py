@@ -4,6 +4,7 @@ from tornado.options import options
 import tornado.web
 import hashlib
 import uuid
+import re
 from time import time
 
 class AdminIndexHandler(AdminHandler):
@@ -103,8 +104,9 @@ class AdminUserHandler(AdminHandler):
         
     @tornado.web.authenticated
     def post(self, user_id):
-        username = self.get_argument("username")
-        email = self.get_argument("email")
+        name = re.sub('[<>/"\']', '', self.get_argument("name"))
+        username = re.sub('[^a-zA-Z0-9]', '', self.get_argument("username"))
+        email = self.get_argument("email", None)
         password = self.get_argument("password", None)
         if password:
             password = hashlib.md5(password).hexdigest()
@@ -116,6 +118,7 @@ class AdminUserHandler(AdminHandler):
             self.error(404)
             
         update_spec = {"$set": {
+            "name": name,
             "username": username,
             "email": email,
         }}
@@ -133,13 +136,15 @@ class AdminUserDeleteHandler(AdminHandler):
     
     @tornado.web.authenticated
     def get(self, user_id):
+        user_id = ObjectId(user_id)
         user = self.db.users.find_one({
-            "_id": ObjectId(user_id),
+            "_id": user_id,
             'admin': False,
         })
         if not user:
             self.error(404)
-        self.db.users.remove({"_id": ObjectId(user_id)})
+        self.db.users.remove({"_id": user_id})
+        self.db.predictions.remove({"user_id": user_id})
         self.redirect("/admin")
         
 class AdminPredictionDeleteHandler(AdminHandler):

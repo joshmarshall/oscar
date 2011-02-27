@@ -1,36 +1,26 @@
-<html>
-<head>
-    <style>
-    
-        table th, table td {
-            text-align: left;
-        }
-    
-    </style>
-</head>
-<body>
+{% include "../header.htm" %}
 
-    <h1>User</h1>
-    
-    <h3>{{ user['_id'] }}</h3>
+    <div class='user-form'>
+    <h1>Edit User</h1>
     <form action="/admin/users/{{ user['_id'] }}" method="POST">
-    <table>
-        <tr><th>Field</th><th>Value</th></tr>
-        <tr>
-            <td>Username: </td>
-            <td><input type="text" name="username" value="{{ user['username'] }}"/></td>
-        </tr>
-        <tr>
-            <td>Email: </td>
-            <td><input type="text" name="email" value="{{ user['email'] }}"/></td>
-        </tr>
-        <tr>
-            <td>Password: (leave empty for same password)</td>
-            <td><input type="password" name="password" value=""/></td>
-        </tr>
-    </table>
-    <input type="submit" value="Submit"/>
+    <p>
+        <label for="username">Name:</label>
+        <input class="text" type="text" name="name" value="{{ user['name'] }}"/>
+    </p>
+    <p>
+        <label for="username">Username:</label>
+        <input class="text" type="text" name="username" value="{{ user['username'] }}"/>
+    </p>
+    <p>
+        <label for="email">Email: </label>
+        <input class="text" type="text" name="email" value="{{ user['email'] }}"/>
+    </p>
+    <p>
+        <label for="password">Password: (leave blank for same)</label>
+        <input class="text" type="password" name="password" value=""/>
+    </p>
+    <p><input type="submit" value="Submit"/></p>
     </form>
-    
-</body>
-</html>
+    </div>
+
+{% include "../footer.htm" %}

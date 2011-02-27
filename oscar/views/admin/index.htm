@@ -1,15 +1,4 @@
-<html>
-<head>
-    <style>
-    
-        table th, table td {
-            text-align: left;
-        }
-    
-    </style>
-</head>
-<body>
-
+{% include "../header.htm" %}
     <h1>Admin Dashboard</h1>
     
     <h3>Users</h3>
@@ -26,7 +15,7 @@
                 {% if user.get('admin') %}
                     (admins may not play)
                 {% else %}
-                    <a href="/prediction/{{ user['_id'] }}">
+                    <a href="/predictions/{{ user['_id'] }}">
                     {% if predictions_by_user.get(user['_id']) %}
                         Prediction
                     </a> 
@@ -94,3 +83,5 @@
 
 </body>
 </html>
+
+{% include "../footer.htm" %}

@@ -3,3 +3,9 @@ Oscar
 This is just a goofy Tornado-based tournament for the 2011
 Academy awards (although technically it could probably be
 augmented for other award shows / prediction shows / etc.
+
+To start it, you should just be able to:
+
+    python -m oscar.server
+
+...in the directory.

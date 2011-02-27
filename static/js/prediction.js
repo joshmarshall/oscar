@@ -1,5 +1,5 @@
 var init = function() {
-    $('.nominee-entry').click(function(e) {
+    $('.nominee-entry').not('.locked').click(function(e) {
         var el = $(this);
         var parent = el.parent();
         if (parent.hasClass("locked"))
@@ -10,6 +10,10 @@ var init = function() {
         });
         el.addClass("selected");
         $("#"+category_id+"-value").val(el.attr("id"));
+    });
+    
+    $('.locked').each(function() {
+        $(this).css("opacity", 0.7);
     });
     
     

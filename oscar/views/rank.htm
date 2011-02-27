@@ -1,16 +1,36 @@
-<html>
-<head>
-    <link href="/static/css/style.css" media="screen" rel="stylesheet"/>
-    <script type="text/javascript" src="/static/js/jquery.js"></script>
-    <script type="text/javascript" src="/static/js/prediction.js"></script>
-</head>
-<body>
-    <h1>Ranking</h1>
-    <ol>
-        {% for user_id, score in scores %}
-        <li><b>{{ users_by_id[user_id]['username'] }}: </b> {{ score }}</li>
+{% include "header.htm" %}
+
+    <ul class="chart">
+        {% for column in columns %}
+        <li class="chart-column chart-points-{{ column[0].get('points', 0) }}">
+            <ul class="chart-column-list">
+            {% for category in column %}
+            <li class="chart-category">
+                <p class="category-title">{{ category['title'] }}</p>
+                <p class="category-points">{{ category.get('points', 0) }}</p>
+            </li>
+            {% end for %}
+            </ul>
+            {% if len(column) == 1 %}
+            <!-- middle column -->
+            <ol class="rank-list">
+                {% for user_id, score, correct in scores[:5] %}
+                <li>
+                    <p class="rank-username">
+                        {{ users_by_id[user_id]['username'] }}
+                    </p>
+                    <p class="rank-score">
+                        <b>{{ score }} POINTS</b><br/>({{ correct }} / {{ total }})
+                    </p>
+                </li>
+                {% end for %}
+            </ol>
+            {% if len(scores) > 5 %}
+            <p></p>
+            {% end if %}
+            {% end for %}
+        </li>
         {% end for %}
-    </ol>
+    </ul>
     
-</body>
-</html>
+{% include "footer.htm" %}

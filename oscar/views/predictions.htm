@@ -5,7 +5,7 @@
     <script type="text/javascript" src="/static/js/prediction.js"></script>
 </head>
 <body>
-    <form action="/prediction/{{ user['_id'] }}" method="POST">
+    <form action="/predictions/{{ user['_id'] }}" method="POST">
     
     {% for category in categories %}
     <h3>{{ category['title'] }}</h3>

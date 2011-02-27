@@ -3,8 +3,9 @@ from oscar.controllers import admin
 
 ROUTES = [
     ("/", dashboard.IndexHandler),
-    ("/users/new", dashboard.NewUserHandler),
-    ("/prediction/([a-zA-Z0-9\-_]+)", dashboard.PredictionHandler),
+    ("/new", dashboard.NewUserHandler),
+    ("/predictions", dashboard.PredictionLoginHandler),
+    ("/predictions/([a-zA-Z0-9\-_]+)", dashboard.PredictionHandler),
     ("/admin", admin.AdminIndexHandler),
     ("/admin/logout", admin.LogoutHandler),
     ("/admin/login", admin.LoginHandler),

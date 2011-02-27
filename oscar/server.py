@@ -7,7 +7,7 @@ import sys
 import os
 
 define("port", 8888, type=int, help="the port the server runs on")
-define("login_url", "/login", help="the login url")
+define("login_url", "/admin/login", help="the login url")
 define("view_path", os.path.join(os.path.dirname(__file__), "views"))
 define("static_path", os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../static")
