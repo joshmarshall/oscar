@@ -1,0 +1,96 @@
+<html>
+<head>
+    <style>
+    
+        table th, table td {
+            text-align: left;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <h1>Admin Dashboard</h1>
+    
+    <h3>Users</h3>
+    <table>
+        <tr><th>Username</th><th>Predictions</th><th>Delete</th></tr>
+        {% for user in users %}
+        <tr>
+            <td>
+                <a href="/admin/users/{{ user['_id'] }}">
+                    {{ user.get('username', '') }}
+                </a>
+            </td>
+            <td>
+                {% if user.get('admin') %}
+                    (admins may not play)
+                {% else %}
+                    <a href="/prediction/{{ user['_id'] }}">
+                    {% if predictions_by_user.get(user['_id']) %}
+                        Prediction
+                    </a> 
+                    (<a href="/admin/predictions/{{ user['_id'] }}/delete">X</a>)
+                    {% else %}
+                        New Prediction
+                    {% end if %}
+                    </a>
+                {% end if %}
+            </td>
+            <td>
+                {% if user.get('admin') %}
+                (admin)
+                {% else %}
+                <a href="/admin/users/delete/{{ user['_id'] }}">
+                    Delete
+                </a>
+                {% end if %}
+            </td>
+        </tr>
+        {% end for %}
+    </table>
+    
+    <h3>Categories</h3>
+    <table>
+        <tr><th>Category</th><th>Short</th><th>Points</th><th>Locked</th><th>Winner</th></tr>
+        {% for category in categories %}
+        <tr>
+            <td>
+                <a href="/admin/categories/{{ category['_id'] }}">
+                    {{ category.get('title', '') }}
+                </a>
+            </td>
+            <td>{{ category.get('short') }}</td>
+            <td>{{ category.get('points', 0) }}</td>
+            <td><input type="checkbox" disabled="disabled" {% if category.get("locked") %}checked="checked"{% end if %}/></td>
+            <td>
+                {% if category.get('winner') %}
+                    {{ nominees_by_id[category['winner']]['title'] }}
+                {% else %}
+                    (undecided) 
+                {% end if %}
+            </td>
+        </tr>
+        {% end for %}
+    </table>
+    
+    <h3>Nominees</h3>
+    <table>
+        <tr><th></th><th>Nominee</th><th>Company</th><th>Detail</th></tr>
+        {% for nominee in nominees %}
+        <tr>
+            <td><img src="{{ nominee['image'] }}" height="30"/></td>
+            <td>
+                <a href="/admin/nominees/{{ nominee['_id'] }}">
+                    {{ nominee['title'] }}
+                </a>
+            </td>
+            <td>{{ nominee.get('company', '') }}</td>
+            <td>{{ nominee.get('detail', '') }}</td>
+        </tr>
+        {% end for %}
+    </table>
+    
+
+</body>
+</html>

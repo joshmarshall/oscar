@@ -1,0 +1,36 @@
+<html>
+<head>
+    <style>
+    
+        table th, table td {
+            text-align: left;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <h1>User</h1>
+    
+    <h3>{{ user['_id'] }}</h3>
+    <form action="/admin/users/{{ user['_id'] }}" method="POST">
+    <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr>
+            <td>Username: </td>
+            <td><input type="text" name="username" value="{{ user['username'] }}"/></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" name="email" value="{{ user['email'] }}"/></td>
+        </tr>
+        <tr>
+            <td>Password: (leave empty for same password)</td>
+            <td><input type="password" name="password" value=""/></td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit"/>
+    </form>
+    
+</body>
+</html>

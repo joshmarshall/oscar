@@ -1,0 +1,16 @@
+<html>
+<head>
+    <link href="/static/css/style.css" media="screen" rel="stylesheet"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/prediction.js"></script>
+</head>
+<body>
+    <h1>Ranking</h1>
+    <ol>
+        {% for user_id, score in scores %}
+        <li><b>{{ users_by_id[user_id]['username'] }}: </b> {{ score }}</li>
+        {% end for %}
+    </ol>
+    
+</body>
+</html>

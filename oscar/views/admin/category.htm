@@ -1,0 +1,51 @@
+<html>
+<head>
+    <style>
+    
+        table th, table td {
+            text-align: left;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <h1>Category</h1>
+    
+    <h3>{{ category['_id'] }}</h3>
+    <form action="/admin/categories/{{ category['_id'] }}" method="POST">
+    <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr>
+            <td>Title: </td>
+            <td><input type="text" name="title" value="{{ category['title'] }}"/></td>
+        </tr>
+        <tr>
+            <td>Short Title: </td>
+            <td><input type="text" name="short" value="{{ category['short'] }}"/></td>
+        </tr>
+        <tr>
+            <td>Points: </td>
+            <td><input type="text" name="points" value="{{ category.get('points', 0) }}"/></td>
+        </tr>
+        <tr>
+            <td>Locked: </td>
+            <td><input type="checkbox" name="locked" value="locked" {% if category.get('locked') %}checked="checked"{% end if %}/></td>
+        </tr>
+        <tr>
+            <td>Winner: </td>
+            <td>
+                <select name="winner">
+                    <option value="">Undecided</option>
+                    {% for nominee in nominees %}
+                    <option value="{{ nominee['_id'] }}" {% if nominee['_id'] == category.get('winner') %}selected="selected"{% end if %}>{{ nominee['title'] }}</option>
+                    {% end for %}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit"/>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,135 @@
+body {
+    font-family: "lucida grande", "Arial", sans-serif;
+    font-size: 12px;
+    background: #000;
+    color: #FFF;
+}
+
+table th, table td {
+    text-align: left;
+}
+
+table td img {
+    display: block;
+}
+
+
+h3, h4 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: normal;
+    text-transform: uppercase;
+    width: 800px;
+    background: #555;
+    margin: 0;
+    padding: 10px 10px 5px;
+}
+
+h4 {
+    padding: 0 10px 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+ul.nominee-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    clear: both;
+    width: 820px;
+}
+
+    ul.nominee-list li {
+        margin: 0 10px 10px 0;
+        padding: 10px;
+        background: #222;
+        width: 380px;
+        display: block;
+        float: left;
+        overflow: auto;
+        cursor: pointer;
+    }
+    
+        ul.nominee-list li:hover {
+            background: #333;
+        }
+        
+        ul.nominee-list li.selected {
+            background: #555;
+        }
+        
+        ul.nominee-list.locked li {
+            cursor: default;
+        }
+        
+        ul.nominee-list.locked li:hover {
+            background: clear;
+        }
+        /*
+        ul.nominee-list.locked li.selected:hover {
+            background: #555;
+        }
+        */
+        
+        ul.nominee-list.locked li.incorrect {
+            background: #700;
+        }
+        
+        ul.nominee-list.locked li.correct {
+            background: #261;
+        }
+    
+    ul.nominee-list li img.nominee-image {
+        float: left;
+        display: block;
+        background: #000;
+        padding: 1px;
+        margin: 0 16px 0 0;
+        border: 1px solid #AAA;
+        height: 70px;
+        width: 55px;
+    }
+
+    ul.nominee-list li div.nominee-info {
+        float: left;
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 280px;
+    }
+
+p.nominee-title {
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: bold;
+    margin: 18px 0 0;
+    padding: 0;
+}
+
+p.nominee-detail {
+    font-size: 12px;
+    line-height: 18px;
+    max-height: 18px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.big-submit {
+    width: 300px;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFF;
+    background: #444;
+    border-radius: 10px;
+    border: 0;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+
+    .big-submit:hover {
+        background: #666;
+    }
