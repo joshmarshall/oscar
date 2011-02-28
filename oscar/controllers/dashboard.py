@@ -256,6 +256,9 @@ class RankingsHandler(Handler):
         scores = []
         
         users_used = []
+        predictions_by_user = {}
+        
+        user_calls = {}
         
         for prediction in predictions:
             
@@ -267,6 +270,11 @@ class RankingsHandler(Handler):
                 if winner and predicted and winner == predicted:
                     score += category['points']
                     correct += 1
+                user_calls.setdefault(prediction['user_id'], {})
+                user_calls[prediction['user_id']][category['short']] = predicted
+                    
+                    
+            predictions_by_user[prediction['user_id']] = prediction
                     
             inserted = False
             for i in range(0, len(scores)):
@@ -287,6 +295,9 @@ class RankingsHandler(Handler):
             "rankings.htm", 
             scores=scores,
             users_by_id=users_by_id,
+            categories=categories,
             nominees_by_id=nominees_by_id,
+            predictions_by_user=predictions_by_user,
+            user_calls=user_calls,
             total=len(categories)
         )

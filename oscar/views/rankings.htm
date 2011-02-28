@@ -9,11 +9,34 @@
             {{ users_by_id[scores[i][0]]['name'] }}
         </p>
         <p class="ranking-score">
-            <b>{{ scores[i][1] }}</b> POINTS  ({{ scores[i][2] }} of {{ total }} correct)
+            <b>{{ scores[i][1] }}</b> POINTS  ({{ scores[i][2] }} of {{ total }} correct) 
+            <a href="#" class="show-predictions-link" rel="show-predictions-{{ i }}">Show Results</a>
         </p>
         </div>
+        {% if user_calls.get(scores[i][0]) %}
+        <ul id="show-predictions-{{ i }}" class="predictions">
+            {% for category in categories %}
+                {% if category.get('winner') and user_calls.get(scores[i][0], {}).get(category['short']) %}
+                <li class="{% if user_calls.get(scores[i][0]).get(category['short']) == category['winner'] %}correct{% else %}incorrect{% end if %}">
+                    <b>&raquo; {{ category['title'] }}</b>
+                     - {{ nominees_by_id.get(user_calls.get(scores[i][0]).get(category['short']))['title'] }}
+                </li>
+                {% end if %}
+            {% end for %}
+        </ul>
+        {% end if %}
     </li>
     {% end for %}
 </ol>
+
+<script type="text/javascript">
+    $(function() {
+        $('.show-predictions-link').click(function(e) {
+            var el_id = $(this).attr('rel');
+            $(this).remove();
+            $('#'+el_id).show();
+        })
+    });
+</script>
     
 {% include "footer.htm" %}
